@@ -1,0 +1,11 @@
+# OS
+**/.DS_Store
+
+# 環境設定ファイル（ルート直下の.env。server/client配下は各プロジェクトの.gitignoreで管理）
+/.env
+
+# Editor
+.idea/
+
+# nginxログ出力先（./docker/nginx/logs を作成してファイル永続化する場合用）
+/docker/nginx/logs

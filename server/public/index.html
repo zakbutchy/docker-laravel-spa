@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laravel + SPA by Docker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div>* {
+      padding: 1em 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Laravel + SPA by Docker</h1>
+    </header>
+    <main class="main">
+      <section>
+        <ul>
+          <li>PHP : <a href="http://localhost:8080/phpinfo.php" target="_blank"
+              rel="noopener noreferrer">http://localhost:8080/phpinfo.php</a>
+          </li>
+          <li>phpMyAdmin (disabled by default, uncomment it in docker-compose.yml) : <a href="http://localhost:8888"
+              target="_blank" rel="noopener noreferrer">http://localhost:8888</a></li>
+          <li>mailpit : <a href="http://localhost:8025" target="_blank"
+              rel="noopener noreferrer">http://localhost:8025</a>
+          </li>
+          <li>Xdebug : <a href="http://localhost:8080/xdebug.php" target="_blank"
+              rel="noopener noreferrer">http://localhost:8080/xdebug.php</a>
+          </li>
+          <li>Vite (frontend dev server, not running until a project exists in client/) : <a
+              href="http://localhost:5173" target="_blank" rel="noopener noreferrer">http://localhost:5173</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <i class="fa-brands fa-github"></i>
+      <a href="https://github.com/zakbutchy/docker-laravel-spa">GitHub</a>
+    </footer>
+  </div>
+</body>
+
+</html>
