@@ -1,0 +1,70 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Rector: current file",
+      "type": "shell",
+      "command": "f=\"${relativeFile}\"; docker compose exec php composer rector -- \"${f#*/}\"",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Rector: current file (dry-run)",
+      "type": "shell",
+      "command": "f=\"${relativeFile}\"; docker compose exec php composer rector-dry -- \"${f#*/}\"",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Larastan: current file",
+      "type": "shell",
+      "command": "f=\"${relativeFile}\"; docker compose exec php composer stan -- \"${f#*/}\"",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pint: current file (check only)",
+      "type": "shell",
+      "command": "f=\"${relativeFile}\"; docker compose exec php composer pint-check -- \"${f#*/}\"",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pint: current file (fix)",
+      "type": "shell",
+      "command": "f=\"${relativeFile}\"; docker compose exec php composer pint -- \"${f#*/}\"",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

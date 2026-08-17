@@ -38,20 +38,32 @@ rm -rf .git
 git init
 ```
 
-Then, either way:
+Ports and the mysql container's initial database/user/password have sensible
+defaults baked into `docker-compose.yml`. This root `.env` is gitignored, so
+it never carries over from the template — if you want to override any of the
+defaults (e.g. to avoid a local port conflict, or to run more than one
+project from this template at the same time), create it now, before
+building — see the `${VAR:-default}` entries in `docker-compose.yml` for the
+full list (`WEB_PORT`, `NODE_PORT`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`,
+`DB_PASSWORD`, `REDIS_PORT`, `PMA_PORT`, `MAILPIT_SMTP_PORT`,
+`MAILPIT_DASHBOARD_PORT`):
+
+```sh
+touch .env
+
+# example
+WEB_PORT=8081
+DB_PORT=3307
+REDIS_PORT=6380
+NODE_PORT=5174
+```
+
+Then:
 
 ```sh
 make build
 make up
 ```
-
-Ports and the mysql container's initial database/user/password have sensible
-defaults baked into `docker-compose.yml`. If you want to override any of
-them (e.g. to avoid a local port conflict), create a root `.env` file with
-just the keys you want to change — see the `${VAR:-default}` entries in
-`docker-compose.yml` for the full list (`WEB_PORT`, `NODE_PORT`, `DB_PORT`,
-`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `REDIS_PORT`, `PMA_PORT`,
-`MAILPIT_SMTP_PORT`, `MAILPIT_DASHBOARD_PORT`).
 
 Use `make build-fresh` if you want to rebuild everything from scratch, ignoring the cache.
 
