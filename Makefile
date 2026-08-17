@@ -38,6 +38,18 @@ install-dev-packages:
 	# docker compose exec php composer require --dev beyondcode/laravel-dump-server
 	# docker compose exec php composer require --dev laravel/telescope
 	# docker compose exec php composer require pestphp/pest --dev --with-all-dependencies
+composer-scripts:
+	docker compose exec php composer config scripts.stan "phpstan analyse"
+	docker compose exec php composer config scripts.rector "rector process"
+	docker compose exec php composer config scripts.rector-dry "rector process --dry-run"
+	docker compose exec php composer config scripts.pint "pint"
+	docker compose exec php composer config scripts.pint-check "pint --test"
+phpstan-config:
+	@# larastanはphpstan.neonを自動生成しないため、既存ファイルが無ければテンプレートから配置する
+	test -f server/phpstan.neon || cp templates/phpstan.neon.template server/phpstan.neon
+gitignore-config:
+	@# Laravel標準の.gitignoreにide-helper生成ファイル等を追加したテンプレートで上書きする
+	cp templates/.gitignore.template server/.gitignore
 init:
 	docker compose up -d --build
 	docker compose exec php composer install
@@ -61,7 +73,7 @@ restart:
 	@make stop
 	@make up
 destroy:
-	docker compose down --rmi all --volumes --remove-orphans
+	docker compose down --rmi local --volumes --remove-orphans
 ps:
 	docker compose ps
 logs:
@@ -127,3 +139,14 @@ composer-audit:
 	docker compose exec php composer audit
 npm-audit:
 	docker compose exec node npm audit
+# composer.jsonのscriptsに登録しているコマンドを実行するためのMakefileターゲット
+rector:
+	docker compose exec php composer rector
+rector-dryrun:
+	docker compose exec php composer rector-dry
+stan:
+	docker compose exec php composer stan
+pint:
+	docker compose exec php composer pint
+pint-check:
+	docker compose exec php composer pint-check
