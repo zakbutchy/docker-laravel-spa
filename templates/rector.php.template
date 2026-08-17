@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+use Rector\Config\RectorConfig;
+
+return RectorConfig::configure()
+    ->withPaths([
+        __DIR__ . '/app',
+        __DIR__ . '/bootstrap',
+        __DIR__ . '/routes',
+        __DIR__ . '/database',
+        __DIR__ . '/config',
+        __DIR__ . '/resources',
+        __DIR__ . '/lang',
+        __DIR__ . '/public',
+        __DIR__ . '/tests',
+    ])
+    // PHPバージョンはcomposer.jsonのrequire.php（無ければ実行中のPHPランタイム）から自動検出される
+    ->withPhpSets()
+    // Laravelのバージョンもcomposer.jsonから自動検出し、対応するルールセットを適用する
+    ->withComposerBased(laravel: true)
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        typeDeclarations: true,
+    )
+    ->withSkip([
+        __DIR__ . '/vendor/*',
+        __DIR__ . '/storage/*',
+        __DIR__ . '/bootstrap/cache/*',
+    ]);
